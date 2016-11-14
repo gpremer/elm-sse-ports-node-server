@@ -1,0 +1,11 @@
+{
+  "name": "nodeSSE",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+  },
+  "main" : "app.js",
+  "dependencies": {
+    "sse-channel" : "~2.0.2"
+  }
+}

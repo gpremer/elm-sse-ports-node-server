@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SSE Client</title>
+</head>
+<body>
+<div>
+    <ul id="events"></ul>
+</div>
+</body>
+<script lang="js">
+    window.onload = function () {
+        console.log("Started");
+        var eventList = document.getElementById("events");
+        var es = new EventSource("http://localhost:8080/events");
+        es.onmessage = function (event) {
+            var newItem = document.createElement("li");
+            newItem.innerHTML = "message: " + event.data;
+            eventList.appendChild(newItem);
+            console.log(event.data);
+        };
+        es.onerror = function (cause) {
+            console.log(cause)
+        };
+        es.addEventListener("custom", function(event) {
+            var newItem = document.createElement("li");
+            newItem.innerHTML = "custom: " + event.data;
+            eventList.appendChild(newItem);
+        });
+        console.log("Listening");
+    }
+</script>
+</html>
